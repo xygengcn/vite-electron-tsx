@@ -17,7 +17,7 @@ export default defineConfig(() => {
     base: './', // index.html 中静态资源加载位置
     assetsDir: 'assets',
     server: {
-      port: +process.env.VITE_APP_PORT
+      port: Number(process.env.VITE_APP_PORT)
     },
     build: {
       outDir: join(__dirname, './dist/render'),
