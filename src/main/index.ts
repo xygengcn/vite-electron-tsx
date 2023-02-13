@@ -23,7 +23,6 @@ class createWin {
         plugins: true,
         scrollBounce: true,
         experimentalFeatures: true,
-        enableRemoteModule: true,
         nodeIntegrationInSubFrames: true,
         preload: join(__dirname, '../../dist/preload/index.js')
       }
