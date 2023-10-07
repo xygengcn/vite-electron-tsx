@@ -4,6 +4,10 @@ import esbuild from 'rollup-plugin-esbuild';
 import alias from '@rollup/plugin-alias';
 import json from '@rollup/plugin-json';
 import { join } from 'path';
+
+/**
+ * 启动配置
+ */
 export default (options) => {
   return options.map((option) => {
     return {
@@ -21,8 +25,8 @@ export default (options) => {
         esbuild({
           include: /\.[jt]sx?$/,
           exclude: /node_modules/,
-          sourceMap: process.env.VITE_APP_ENV == 'development',
-          minify: process.env.VITE_APP_ENV !== 'development',
+          sourceMap: process.env.NODE_ENV === 'development',
+          minify: process.env.NODE_ENV !== 'development',
           target: 'esnext',
           jsxFactory: 'React.createElement',
           jsxFragment: 'React.Fragment',

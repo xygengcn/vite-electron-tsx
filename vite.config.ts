@@ -17,13 +17,17 @@ export default defineConfig(() => {
     base: './', // index.html 中静态资源加载位置
     assetsDir: 'assets',
     server: {
-      port: Number(process.env.VITE_APP_PORT)
+      port: 8080
     },
     build: {
       outDir: join(__dirname, './dist/render'),
       assetsDir: './assets', // 相对路径 加载问题
       emptyOutDir: true
+    },
+    define: {
+      'process.env': {
+        NODE_ENV: 'development'
+      }
     }
-    // 其他配置略...
   };
 });

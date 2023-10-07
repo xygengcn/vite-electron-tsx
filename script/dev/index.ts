@@ -5,10 +5,14 @@ import rollupTasks from '../rollupTasks';
 import { Socket } from 'net';
 import waitOn from 'wait-on';
 
-enum ElectronState {
-  init = 'init'
-}
+/**
+ *
+ */
+let electronConnentServer;
 
+/**
+ * 监听函数
+ */
 const watchFunc = function () {
   const watcher = watch(rollupTasks);
   watcher.on('change', (filename) => {
@@ -16,14 +20,14 @@ const watchFunc = function () {
   });
   watcher.on('event', (ev) => {
     if (ev.code === 'END') {
-      const el = ElectronConnent.server.create({ stopOnClose: true });
-      if (el.electronState === ElectronState.init) {
-        el.start();
-        console.log(green('Electron项目启动\n'));
-      } else {
-        el.restart();
+      if (electronConnentServer) {
+        electronConnentServer.restart();
         console.log(green('Electron项目重新启动'));
+        return;
       }
+      electronConnentServer = ElectronConnent.server.create({ stopOnClose: true });
+      electronConnentServer.start();
+      console.log(green('Electron项目启动\n'));
     } else if (ev.code === 'ERROR') {
       console.log(red('Electron项目构建失败：'), ev.error);
     }
@@ -31,12 +35,12 @@ const watchFunc = function () {
 };
 waitOn(
   {
-    resources: [`http://localhost:${process.env.VITE_APP_PORT}`],
+    resources: ['http://localhost:8080'],
     timeout: 5000
   },
   (err) => {
     if (err) {
-      const { port, hostname } = new URL(`http://localhost:${process.env.VITE_APP_PORT}`);
+      const { port, hostname } = new URL('http://localhost:8080');
       const serverSocket = new Socket().connect(Number(port) || 80, hostname, () => {
         watchFunc();
       });

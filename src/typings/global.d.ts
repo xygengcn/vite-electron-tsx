@@ -1,9 +1,7 @@
-import store from '../render/store';
 declare global {
-    interface Window {
-        $store: typeof store,
-        hello: () => void
-    }
+  interface Window {
+    hello: () => void;
+  }
 }
 
-export default global
+export default global;
