@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently -n=vite,electron -c=green,blue \"yarn run dev:vite\" \"yarn run dev:electron\"",
     "dev:vite": "vite",
-    "dev:electron": "env-cmd node -r ts-node/register script/devDependencies",
+    "dev:electron": "env-cmd node -r ts-node/register script/dev",
     "build": "yarn run build:vite && yarn run build:electron && electron-builder",
     "build:vite": "vuedx-typecheck . && vite build",
     "build:electron": "node -r ts-node/register script/build",
