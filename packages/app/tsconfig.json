@@ -1,0 +1,25 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "jsx": "preserve",
+    "target": "ESNext",
+    "module": "CommonJS",
+    "sourceMap": false,
+    "outDir": "./dist",
+    "declaration": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "baseUrl": "./",
+    "lib": ["esnext", "dom"],
+    "types": ["node"],
+    "typeRoots": ["typings/*", "node_modules/@types"],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src", "script", "typings"]
+}

@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run-Web",
+            "type": "shell",
+            "command": "pnpm dev",
+            "options": {
+                "cwd": "${workspaceFolder}/packages/web/"
+            },
+        },
+        {
+            "label": "Run-Electron",
+            "type": "shell",
+            "command": "pnpm dev",
+            "options": {
+                "cwd": "${workspaceFolder}/packages/app/"
+            },
+        },
+        {
+            "label": "Build-Web",
+            "type": "shell",
+            "command": "pnpm run build",
+            "options": {
+                "cwd": "${workspaceFolder}/packages/web/"
+            },
+        },
+        {
+            "label": "Build-Electron",
+            "type": "shell",
+            "command": "pnpm run build",
+            "options": {
+                "cwd": "${workspaceFolder}/packages/app/"
+            },
+        },
+     
+    ]
+}

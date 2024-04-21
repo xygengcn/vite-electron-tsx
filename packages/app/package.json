@@ -1,0 +1,80 @@
+{
+  "name": "@quark/app",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/main/index.js",
+  "types": "typings/index.d.ts",
+  "author": {
+    "name": "xygengcn",
+    "email": "xygengcn@gmail.com",
+    "url": "https://xygeng.cn"
+  },
+  "scripts": {
+    "dev": "env-cmd ts-node -r tsconfig-paths/register script/dev",
+    "build": "node -r ts-node/register script/build && electron-builder",
+    "lint": "eslint src/ --ext ts,tsx,js  --fix"
+  },
+  "build": {
+    "productName": "Quark",
+    "appId": "com.xygengcn.quark",
+    "asar": true,
+    "directories": {
+      "output": "release/${version}"
+    },
+    "files": [
+      "!node_modules",
+      "dist/**"
+    ],
+    "mac": {
+      "artifactName": "${productName}_${version}.${ext}",
+      "icon": "script/build/icons/logo.icns",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "icon": "script/build/icons/logo.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}_${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    }
+  },
+  "devDependencies": {
+    "@quark/web": "workspace:^",
+    "@rollup/plugin-alias": "^5.0.1",
+    "@rollup/plugin-commonjs": "^25.0.5",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.2",
+    "@types/node": "^18.18.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "chalk": "^4.1.0",
+    "electron": "^30.0.1",
+    "electron-builder": "24.6.4",
+    "electron-connect": "^0.6.3",
+    "env-cmd": "^10.1.0",
+    "eslint": "^7.28.0",
+    "ora": "^5.0.0",
+    "rollup": "^4.0.0",
+    "rollup-plugin-esbuild": "^6.0.2",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.2.2",
+    "wait-on": "^5.2.1"
+  },
+  "dependencies": {
+    "eventemitter3": "^5.0.1"
+  }
+}
